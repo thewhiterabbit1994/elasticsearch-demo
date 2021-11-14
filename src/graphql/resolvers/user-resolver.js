@@ -1,4 +1,5 @@
 import User from 'models/user'
+import sms from '@lib/sms'
 const temporaryUserHolder = {}
 
 export default {
@@ -32,6 +33,10 @@ export default {
         setTimeout(() => delete temporaryUserHolder[phoneNumber], 200 * 1000)
 
         // send an sms to the user containing thisUser.loginObject.code
+        sms({
+          phoneNumber,
+          text: `here is the code ${thisUser.loginObject.code}`
+        })
 
         return {
           msg: 'ok'
@@ -62,6 +67,8 @@ export default {
         const token = thisUser._createToken()
         delete temporaryUserHolder[phoneNumber]
 
+        // after we log in, the front-end handles storing this token somewhere like 
+        // cookies, asyncStorage, etc.
         return {
           token
         }
@@ -86,7 +93,12 @@ export default {
         thisUser._createLoginObject()
 
         await thisUser.save()
+
         // send an sms to the user containing thisUser.loginObject.code
+        sms({
+          phoneNumber,
+          code: thisUser.loginObject.code
+        })
 
         return {
           msg: 'ok'
@@ -118,6 +130,8 @@ export default {
 
         const token = thisUser._createToken()
 
+        // after we log in, the front-end handles storing this token somewhere like 
+        // cookies, asyncStorage, etc.
         return {
           token
         }

@@ -67,7 +67,7 @@ UserSchema.methods = {
 
 UserSchema.statics = {
   checkIfUserExists: async function (phoneNumber) {
-    console.log(this)
+
     const thisUser = await this.findOne({
       phoneNumber
     }).lean()
