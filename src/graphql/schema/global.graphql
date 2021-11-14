@@ -1,0 +1,16 @@
+scalar Date
+scalar Email
+scalar PhoneNumber
+
+type GeoPoint {
+  lat: Float!
+  lon: Float!
+}
+
+type Status {
+  msg: String!
+}
+
+type Token {
+  token: String!
+}

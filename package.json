@@ -1,0 +1,36 @@
+{
+  "name": "elasticsearch-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/thewhiterabbit1994/elasticsearch-demo.git",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/plugin-transform-runtime": "^7.15.8",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-typescript": "^7.15.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/index.js --ext js,graphql",
+    "build": "babel src -d dist",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.15.0",
+    "apollo-server": "^3.3.0",
+    "apollo-server-core": "^3.5.0",
+    "apollo-server-express": "^3.5.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "graphql": "^15.6.0",
+    "graphql-date": "^1.0.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.8"
+  }
+}

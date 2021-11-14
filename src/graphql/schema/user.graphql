@@ -1,0 +1,24 @@
+
+
+type User {
+  _id: ID!
+  name: String!
+  email: Email!
+  phoneNumber: PhoneNumber!
+  isActive: Boolean!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+input UserInfo {
+  name: String!
+  email: Email!
+  phoneNumber: PhoneNumber!
+}
+
+type Mutation {
+  sign_up_step_one(data: UserInfo!): Status!
+  sign_up_step_two(phoneNumber: PhoneNumber!, code: String!): Token!
+  login_step_one(phoneNumber: PhoneNumber!): Status!
+  login_step_two(phoneNumber: PhoneNumber!, code: String!): Token!
+}

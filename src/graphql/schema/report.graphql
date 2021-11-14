@@ -1,0 +1,19 @@
+
+type Report {
+  _id: ID!
+  title: String!
+  description: String!
+  location: GeoPoint!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+input GeoPointInput {
+  lat: Float!
+  lon: Float!
+}
+
+type Query {
+  hello: String!
+  getReportsInArea(location: GeoPointInput!, distance: Float!): [Report!]!
+}
