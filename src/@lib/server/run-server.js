@@ -44,6 +44,6 @@ export default async ({
   await new Promise(resolve => httpServer.listen({
     port
   }, resolve));
-  console.log(`app is running on port ${port}`)
-  console.log(`GraphQL Server ready at http://localhost:${port}${server.graphqlPath}`);
+  print(`app is running on port ${port}`)
+  print(`GraphQL Server ready at http://localhost:${port}${server.graphqlPath}`);
 }

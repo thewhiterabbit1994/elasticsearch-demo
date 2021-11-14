@@ -14,6 +14,5 @@ input GeoPointInput {
 }
 
 type Query {
-  hello: String!
   getReportsInArea(location: GeoPointInput!, distance: Float!): [Report!]!
 }

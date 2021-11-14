@@ -5,7 +5,6 @@ import userResolver from './user-resolver'
 export default {
   ...Scalars,
   Query: {
-    hello: () => 'world!',
     ...reportResolver.Query,
     ...userResolver.Query,
   },

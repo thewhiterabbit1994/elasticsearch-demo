@@ -24,6 +24,7 @@ const submitReport = async (req, res) => {
 
     const thisReport = await Report.create(req.body)
 
+    // were intreseted in the plain object not the mongoos doc, hence deepClone
     indexSingleReport(deepClone(thisReport))
 
     res.status(200).json({
@@ -31,7 +32,7 @@ const submitReport = async (req, res) => {
     })
 
   } catch (error) {
-    console.log('error in submit report')
+    print('error in submit report')
     res.status(500).json({
       msg: error.message
     })

@@ -60,6 +60,7 @@ export default {
         thisUser = await thisUser.save()
 
         const token = thisUser._createToken()
+        delete temporaryUserHolder[phoneNumber]
 
         return {
           token

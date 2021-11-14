@@ -12,6 +12,7 @@ export default length => {
 
     // for test purposes, remove this later
     return acc += '1'
+    // this is the real return
     return acc += (shouldChange ? 1 : digit)
   }, '')
 

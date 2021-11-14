@@ -13,14 +13,17 @@ export default {
       user
     }) => {
 
-      await checkUser(user)
+      try {
+        await checkUser(user)
 
-      const result = await getReportsInArea({
-        location,
-        distance
-      })
+        return getReportsInArea({
+          location,
+          distance
+        })
 
-      return result
+      } catch (error) {
+
+      }
     }
   },
   Mutation: {
