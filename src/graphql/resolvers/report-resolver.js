@@ -22,7 +22,7 @@ export default {
         })
 
       } catch (error) {
-
+        throw error
       }
     }
   },
