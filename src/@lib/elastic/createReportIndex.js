@@ -15,7 +15,6 @@ export default async client => {
 
     await client.indices.putMapping({
       index: 'report',
-      // type: 'staff',
       body: {
         properties: {
           title: {
