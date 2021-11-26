@@ -1,6 +1,4 @@
-import mongoose, {
-  Schema
-} from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
 import jwt from 'jsonwebtoken'
 
 import generateNumericString from '@lib/utils/generateNumericString'
@@ -68,9 +66,7 @@ UserSchema.methods = {
 UserSchema.statics = {
   checkIfUserExists: async function (phoneNumber) {
 
-    const thisUser = await this.findOne({
-      phoneNumber
-    }).lean()
+    const thisUser = await this.findOne({ phoneNumber }).lean()
 
     return !!thisUser
   }

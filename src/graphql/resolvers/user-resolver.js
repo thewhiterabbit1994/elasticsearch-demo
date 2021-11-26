@@ -7,13 +7,7 @@ export default {
 
   },
   Mutation: {
-    sign_up_step_one: async (_, {
-      data: {
-        name,
-        email,
-        phoneNumber,
-      }
-    }) => {
+    sign_up_step_one: async (_, { data: { name, email, phoneNumber, } }) => {
       try {
 
         const doesUserExist = await User.checkIfUserExists(phoneNumber)
@@ -33,10 +27,7 @@ export default {
         setTimeout(() => delete temporaryUserHolder[phoneNumber], 200 * 1000)
 
         // send an sms to the user containing thisUser.loginObject.code
-        sms({
-          phoneNumber,
-          text: `here is the code ${thisUser.loginObject.code}`
-        })
+        sms({ phoneNumber, text: `here is the code ${thisUser.loginObject.code}` })
 
         return {
           msg: 'ok'
@@ -46,11 +37,8 @@ export default {
         throw error
       }
     },
-    sign_up_step_two: async (_, {
-      phoneNumber,
-      code
-    }) => {
-
+    sign_up_step_two: async (_, { phoneNumber, code }) => {
+      
       try {
 
         if (!temporaryUserHolder[phoneNumber]) throw new Error('bad request')
@@ -78,16 +66,12 @@ export default {
       }
 
     },
-    login_step_one: async (_, {
-      phoneNumber
-    }) => {
-
+    login_step_one: async (_, { phoneNumber }) => {
+      
       try {
 
-        const thisUser = await User.findOne({
-          phoneNumber
-        })
-
+        const thisUser = await User.findOne({ phoneNumber })
+        
         if (!thisUser) throw new Error('wrong phone number')
 
         thisUser._createLoginObject()
@@ -95,11 +79,8 @@ export default {
         await thisUser.save()
 
         // send an sms to the user containing thisUser.loginObject.code
-        sms({
-          phoneNumber,
-          code: thisUser.loginObject.code
-        })
-
+        sms({ phoneNumber, code: thisUser.loginObject.code })
+        
         return {
           msg: 'ok'
         }
@@ -109,17 +90,12 @@ export default {
         throw error
       }
     },
-    login_step_two: async (_, {
-      phoneNumber,
-      code
-    }) => {
-
+    login_step_two: async (_, { phoneNumber, code }) => {
+      
       try {
 
-        const thisUser = await User.findOne({
-          phoneNumber
-        })
-
+        const thisUser = await User.findOne({ phoneNumber })
+        
         if (!thisUser) throw new Error('wrong phone number')
 
         await thisUser._validatCode(code)

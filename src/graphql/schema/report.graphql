@@ -16,3 +16,7 @@ input GeoPointInput {
 type Query {
   getReportsInArea(location: GeoPointInput!, distance: Float!): [Report!]!
 }
+
+type Mutation {
+  submitReport(title: String!, description: String!, location: GeoPointInput!): Status!
+}

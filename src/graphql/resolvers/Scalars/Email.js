@@ -1,10 +1,5 @@
-import {
-  UserInputError
-} from 'apollo-server-express'
-import {
-  GraphQLScalarType,
-  Kind
-} from 'graphql'
+import { UserInputError } from 'apollo-server-express'
+import { GraphQLScalarType, Kind } from 'graphql'
 
 function validateEmail(value) {
 
@@ -15,9 +10,8 @@ function validateEmail(value) {
 
   const isValid = re.test(String(value).toLowerCase());
 
-  if (isValid) {
-    return value;
-  }
+  if (isValid) return value;
+  
   throw new UserInputError("Provided value is not a valid Email");
 }
 
@@ -27,9 +21,8 @@ export default new GraphQLScalarType({
   parseValue: validateEmail,
   serialize: validateEmail,
   parseLiteral(ast) {
-    if (ast.kind === Kind.STRING) {
-      return validateEmail(ast.value);
-    }
+    if (ast.kind === Kind.STRING) return validateEmail(ast.value);
+    
     throw new UserInputError("Provided value is not a valid Email");
   },
 })

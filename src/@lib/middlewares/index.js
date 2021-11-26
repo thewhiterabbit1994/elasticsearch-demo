@@ -10,5 +10,5 @@ export default app => {
     extended: true
   }));
   app.use(cookieParser())
-  app.use(authenticate)
+  // app.use(authenticate)
 }

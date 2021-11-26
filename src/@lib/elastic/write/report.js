@@ -1,22 +1,24 @@
-import esClient from './index'
+import esClient from '../index'
 
 const Queue = []
 
-const indexSingleReport = async report => {
+const writeSingleReport = async report => {
 
   const {
     _id,
     ...rest
   } = report
 
+  const obj = {
+    index: 'report',
+    body: {
+      id: _id,
+      ...rest
+    }
+  }
+
   try {
-    await esClient.index({
-      index: 'report',
-      body: {
-        id: _id,
-        ...rest
-      }
-    })
+    await esClient.index(obj)
 
     print('successfully indexed')
   } catch (error) {
@@ -32,8 +34,8 @@ setInterval(() => {
   const arr = [...Queue]
   Queue.length = 0
   arr.forEach(item => {
-    indexSingleReport(item)
+    writeSingleReport(item)
   })
 }, 1000 * 60 * 10)
 
-export default indexSingleReport
+export default writeSingleReport

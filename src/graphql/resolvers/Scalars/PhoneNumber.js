@@ -1,11 +1,5 @@
-import {
-  UserInputError
-} from 'apollo-server-express'
-import {
-  GraphQLScalarType,
-  Kind
-} from 'graphql'
-
+import { UserInputError } from 'apollo-server-express'
+import { GraphQLScalarType, Kind } from 'graphql'
 
 function validatePhoneNumber(value) {
 
@@ -15,9 +9,8 @@ function validatePhoneNumber(value) {
 
   const isValid = re.test(String(value));
 
-  if (isValid) {
-    return `+98${value.slice(value.length - 10, value.length)}`;
-  }
+  if (isValid) return `+98${value.slice(value.length - 10, value.length)}`;
+  
   throw new UserInputError("Provided value is not a valid Phone Number");
 }
 
@@ -28,9 +21,8 @@ export default new GraphQLScalarType({
   parseValue: validatePhoneNumber,
   serialize: validatePhoneNumber,
   parseLiteral(ast) {
-    if (ast.kind === Kind.STRING) {
-      return validatePhoneNumber(ast.value);
-    }
+    if (ast.kind === Kind.STRING) return validatePhoneNumber(ast.value);
+    
     throw new UserInputError("Provided value is not a valid Phone Number");
   },
 })

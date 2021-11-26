@@ -1,6 +1,4 @@
-import mongoose, {
-  Schema
-} from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
 
 const ReportSchema = new Schema({
   title: String,
